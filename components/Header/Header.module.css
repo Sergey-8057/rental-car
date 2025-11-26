@@ -1,0 +1,27 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--badges);
+  max-width: 1440px;
+  width: 100%;
+  padding: 24px 120px;
+  margin: 0 auto;
+}
+
+.navigation {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.navigationItem {
+  font-weight: 500;
+  line-height: 125%;
+}
+
+.isActive {
+  font-weight: 500;
+  line-height: 125%;
+  color: var(--button-hover);
+}
