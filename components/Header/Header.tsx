@@ -15,7 +15,7 @@ export default function Header() {
             <Link href="/">Home</Link>
           </li>
           <li className={css.navigationItem}>
-            <Link href="/">Catalog</Link>
+            <Link href="/cars">Catalog</Link>
           </li>
         </ul>
       </nav>

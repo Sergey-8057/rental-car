@@ -6,7 +6,8 @@
 
 .hero {
   display: block;
-  padding: 436px 329px 60px 328px;
+  width: 100%;
+  padding: 436px 0 60px 0;
   background-image: url('/hero-picture-1x.jpg');
   background-position: center;
   background-size: cover;
