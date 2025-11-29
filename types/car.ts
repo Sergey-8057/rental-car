@@ -1,5 +1,5 @@
 export interface Car {
-  _id: string;
+  id: string;
   year: number;
   brand: string;
   model: string;
@@ -18,10 +18,8 @@ export interface Car {
 }
 
 export interface CarsResponse {
-  data: {
-    data: Car[];
-    totalCars: number;
-    page: number;
-    totalPages: number;
-  };
+  cars: Car[];
+  totalCars: number;
+  page: number;
+  totalPages: number;
 }

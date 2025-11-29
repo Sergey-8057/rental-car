@@ -1,21 +1,9 @@
 import { serverFetchCars } from '@/lib/api/serverApi';
+import CarsClient from './Cars.client';
+import { DEFAULT_LIMIT, DEFAULT_PAGE } from '@/constants/pagination';
 
-export default async function CarssPage() {
-  //{ params }: Props
-  // const tag = slug[0];
-  // const search = '';
-  // const page = 1;
-  // const perPage = 12;
-  // const initialData = await fetchNotes(search, page, perPage, tag);
-  const initialData = await serverFetchCars();
+export default async function CarsPage() {
+  const initialData = await serverFetchCars(DEFAULT_LIMIT, DEFAULT_PAGE);
 
-  return (
-    // <NotesClient initialData={initialData} initialSearch={search} initialPage={page} tag={tag} />
-    <section>
-      <div>
-        <h1>Catalog</h1>
-        <p>initialData</p>
-      </div>
-    </section>
-  );
+  return <CarsClient initialData={initialData} initialPage={DEFAULT_PAGE} />;
 }

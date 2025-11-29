@@ -2,23 +2,16 @@ import { NextRequest, NextResponse } from 'next/server';
 import { api } from '../api';
 import { isAxiosError } from 'axios';
 import { logErrorResponse } from '../_utils/utils';
+import { DEFAULT_LIMIT, DEFAULT_PAGE } from '@/constants/pagination';
 
 export async function GET(request: NextRequest) {
   try {
-    // const search = request.nextUrl.searchParams.get('search') ?? '';
-    // const page = Number(request.nextUrl.searchParams.get('page') ?? 1);
-    // const rawTag = request.nextUrl.searchParams.get('tag') ?? '';
-    // const tag = rawTag === 'All' ? '' : rawTag;
+    const limit = Number(request.nextUrl.searchParams.get('limit') ?? DEFAULT_LIMIT);
+    const page = Number(request.nextUrl.searchParams.get('page') ?? DEFAULT_PAGE);
 
-    const res = await api('/cars'//, {
-      // params: {
-      //   ...(search !== '' && { search }),
-      //   page,
-      //   perPage: 12,
-      //   ...(tag && { tag }),
-      // },
-  //  }
-  );
+    const res = await api('/cars', {
+      params: { limit, page },
+    });
 
     return NextResponse.json(res.data, { status: res.status });
   } catch (error) {
@@ -29,6 +22,7 @@ export async function GET(request: NextRequest) {
         { status: error.status }
       );
     }
+
     logErrorResponse({ message: (error as Error).message });
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }

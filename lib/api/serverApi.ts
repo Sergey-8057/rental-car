@@ -1,33 +1,14 @@
 import { nextServer } from './api';
-
 import { CarsResponse } from '@/types/car';
+import { DEFAULT_LIMIT, DEFAULT_PAGE } from '@/constants/pagination';
 
 export async function serverFetchCars(
-  // {
-    // page = 1,
-    // perPage = ITEMS_PER_PAGE,
-    // filter,
-    // sortField,
-    // sortOrder,
-  // }: {
-  //   page?: number;
-  //   perPage?: number;
-  //   filter?: string;
-  //   sortField?: string;
-  //   sortOrder?: string;
-  // }
+  limit: number = DEFAULT_LIMIT,
+  page: number = DEFAULT_PAGE
 ): Promise<CarsResponse> {
-  const response = await nextServer.get<CarsResponse>('/cars'//, {
-    // params: {
-    //   page,
-    //   perPage,
-    //   filter,
-    //   sortField,
-    //   sortOrder,
-    // },
-    //}
-  );
-  console.log(response.data);
+  const response = await nextServer.get<CarsResponse>('/cars', {
+    params: { limit, page },
+  });
 
   return response.data;
 }
