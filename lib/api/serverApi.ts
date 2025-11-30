@@ -1,6 +1,10 @@
-import { nextServer } from './api';
+import axios from 'axios';
 import { CarsResponse, Car, CarFilterParams } from '@/types/car';
 import { DEFAULT_LIMIT, DEFAULT_PAGE } from '@/constants/pagination';
+
+const externalApi = axios.create({
+  baseURL: 'https://car-rental-api.goit.global',
+});
 
 export async function serverFetchCars({
   limit = DEFAULT_LIMIT,
@@ -10,7 +14,7 @@ export async function serverFetchCars({
   minMileage,
   maxMileage,
 }: CarFilterParams = {}): Promise<CarsResponse> {
-  const response = await nextServer.get<CarsResponse>('/cars', {
+  const response = await externalApi.get<CarsResponse>('/cars', {
     params: {
       limit,
       page,
@@ -20,15 +24,16 @@ export async function serverFetchCars({
       maxMileage,
     },
   });
+
   return response.data;
 }
 
 export async function fetchCarByIdServer(id: string) {
-  const res = await nextServer.get<Car>(`/cars/${id}`);
+  const res = await externalApi.get<Car>(`/cars/${id}`);
   return res.data;
 }
 
 export async function fetchAllCarBrandServer(): Promise<string[]> {
-  const res = await nextServer.get<string[]>(`/brands`);
+  const res = await externalApi.get<string[]>(`/brands`);
   return res.data;
 }
