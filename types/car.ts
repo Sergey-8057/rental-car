@@ -23,3 +23,12 @@ export interface CarsResponse {
   page: number;
   totalPages: number;
 }
+
+export type CarFilterParams = {
+  brand?: string;
+  rentalPrice?: string;
+  minMileage?: string;
+  maxMileage?: string;
+  limit?: number;
+  page?: number;
+};

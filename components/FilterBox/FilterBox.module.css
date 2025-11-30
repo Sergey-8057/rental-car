@@ -1,0 +1,142 @@
+.container {
+  max-width: 1440px;
+  width: 100%;
+  padding: 84px 258px 56px;
+  margin: 0 auto;
+}
+
+.formGroup {
+  display: flex;
+  gap: 16px;
+}
+
+.label {
+  font-family: var(--font-family);
+  font-size: 12px;
+  line-height: 133%;
+  color: var(--gray);
+}
+
+.menuButton {
+  margin-top: 8px;
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  border-color: transparent;
+  background: var(--inputs);
+  cursor: pointer;
+  width: 200px;
+  height: 44px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--main);
+}
+
+.iconChooseBrands {
+  fill: var(--main);
+}
+
+.menuList {
+  border: 1px solid var(--inputs);
+  border-radius: 12px;
+  width: 204px;
+  height: 272px;
+  overflow-y: auto;
+  box-shadow: 0 4px 36px 0 rgba(0, 0, 0, 0.02);
+  background: var(--white);
+  border-radius: 6px;
+  position: absolute;
+  z-index: 99;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--gray);
+}
+
+.menuItem {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.menuItem:hover {
+  color: var(--main);
+}
+
+.inputFrom {
+  border-radius: 12px 0 0 12px;
+  border-color: transparent;
+  border-right: 1px solid var(--gray-light);
+  width: 160px;
+  height: 44px;
+  background-color: var(--inputs);
+  padding: 10px 14px;
+  margin-top: 8px;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--main);
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.inputTo {
+  border-radius: 0 12px 12px 0;
+  border-color: transparent;
+  width: 160px;
+  height: 44px;
+  background-color: var(--inputs);
+  padding: 10px 14px;
+  margin-top: 8px;
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--main);
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.inputFrom::placeholder,
+.inputTo::placeholder {
+  font-family: var(--font-family);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--main);
+}
+
+.inputFrom:focus,
+.inputFrom:focus-visible,
+.inputTo:focus,
+.inputTo:focus-visible {
+  outline: none;
+  box-shadow: none;
+  border-color: var(--gray-light);
+}
+
+.submitButton {
+  display: block;
+  margin-top: auto;
+  border-color: transparent;
+  border-radius: 12px;
+  width: 156px;
+  height: 44px;
+  background-color: var(--button);
+  font-family: var(--font-family);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 125%;
+  color: var(--white);
+  cursor: pointer;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.submitButton:hover,
+.submitButton:focus {
+  background-color: var(--button-hover);
+}

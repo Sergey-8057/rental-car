@@ -1,21 +1,28 @@
 import { nextServer } from './api';
-import { CarsResponse, Car } from '@/types/car';
+import { CarsResponse, Car, CarFilterParams } from '@/types/car';
 
 export async function fetchAllCarsClient({
   limit = 12,
   page = 1,
-}: {
-  limit?: number;
-  page?: number;
-}): Promise<CarsResponse> {
+  brand,
+  rentalPrice,
+  minMileage,
+  maxMileage,
+}: CarFilterParams): Promise<CarsResponse> {
   const response = await nextServer.get<CarsResponse>('/cars', {
-    params: { limit, page },
+    params: { 
+      limit, 
+      page, 
+      brand, 
+      rentalPrice, 
+      minMileage, 
+      maxMileage 
+    },
   });
-
   return response.data;
 }
 
-export const fetchCarByIdclient = async (id: string) => {
+export async function fetchCarByIdclient(id: string) {
   const res = await nextServer.get<Car>(`/cars/${id}`);
   return res.data;
-};
+}
