@@ -7,6 +7,7 @@
   width: 100%;
   padding: 24px 120px;
   margin: 0 auto;
+  background-color: var(--badges);
 }
 
 .navigation {

@@ -1,0 +1,19 @@
+.containerForm {
+  border: 1px solid var(--gray-light);
+  border-radius: 10px;
+  padding: 32px;
+}
+
+.formTitle {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 120%;
+  margin-bottom: 8px;
+}
+
+.formText {
+  font-weight: 500;
+  line-height: 125%;
+  color: var(--gray);
+  margin-bottom: 24px;
+}

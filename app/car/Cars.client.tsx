@@ -7,6 +7,7 @@ import { CarsResponse, Car } from '@/types/car';
 import { DEFAULT_LIMIT } from '@/constants/pagination';
 import FilterBox from '@/components/FilterBox/FilterBox';
 import CarList from '@/components/CarList/CarList';
+import css from './page.module.css';
 
 interface CarsClientProps {
   initialData: CarsResponse;
@@ -38,12 +39,16 @@ export default function CarsClient({ initialData, initialPage }: CarsClientProps
   };
 
   return (
-    <div>
+    <>
       <FilterBox />
 
       <CarList cars={allCars} />
 
-      {canLoadMore && <button onClick={handleLoadMore}>Load more</button>}
-    </div>
+      {canLoadMore && (
+        <button className={css.btn} onClick={handleLoadMore}>
+          Load more
+        </button>
+      )}
+    </>
   );
 }

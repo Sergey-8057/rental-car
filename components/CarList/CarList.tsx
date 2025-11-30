@@ -10,10 +10,12 @@ interface CarListProps {
 
 export default function CarList({ cars }: CarListProps) {
   return (
-    <ul className={css.list}>
-      {cars.map(car => (
-        <CarCard key={car.id} car={car} />
-      ))}
-    </ul>
+    <section className={css.container}>
+      <ul className={css.list}>
+        {cars.map(car => (
+          <CarCard key={car.id} car={car} />
+        ))}
+      </ul>
+    </section>
   );
 }

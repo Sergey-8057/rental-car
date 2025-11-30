@@ -1,5 +1,5 @@
 import { nextServer } from './api';
-import { CarsResponse } from '@/types/car';
+import { CarsResponse, Car } from '@/types/car';
 
 export async function fetchAllCarsClient({
   limit = 12,
@@ -14,3 +14,8 @@ export async function fetchAllCarsClient({
 
   return response.data;
 }
+
+export const fetchCarByIdclient = async (id: string) => {
+  const res = await nextServer.get<Car>(`/cars/${id}`);
+  return res.data;
+};

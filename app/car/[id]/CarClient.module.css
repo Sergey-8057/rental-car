@@ -1,0 +1,116 @@
+.container {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 84px 120px 104px 120px;
+}
+
+.imgWrapper {
+  width: 640px;
+  height: 512px;
+  flex-shrink: 0;
+  border-radius: 19px;
+  overflow: hidden;
+  margin-bottom: 40px;
+}
+.rentalForm {
+  width: 100%;
+  max-width: 640px;
+}
+
+.contInfoCar {
+  flex: 1;
+  max-width: 488px;
+}
+
+.infoCarTitle {
+  padding-top: 20px;
+  margin-bottom: 68px;
+}
+
+.infoCarTitleModel {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.infoCarBrand {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 133%;
+}
+
+.infoCarModelId {
+  font-weight: 500;
+  line-height: 125%;
+  color: var(--gray);
+}
+
+.iconLocationAndAddress {
+  display: flex;
+  gap: 4px;
+}
+
+.infoCarAddress {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.infoCarAddresText {
+  font-weight: 500;
+  line-height: 125%;
+}
+
+.infoCarPrice {
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 133%;
+  color: var(--button);
+  margin-bottom: 32px;
+}
+
+.infoCarDescription {
+  font-weight: 500;
+  line-height: 125%;
+}
+
+.conditionsSpecificationsAccessories {
+  display: flex;
+  flex-direction: column;
+  gap: 110px;
+}
+
+.condSpecAccesTitle {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 120%;
+  margin-bottom: 20px;
+}
+
+.condSpecAccesItem {
+  display: flex;
+  gap: 8px;
+  align-items: center
+}
+
+.iconCheckCircle {
+  fill: var(--main);
+}
+
+.condSpecAccesText {
+  display: flex;
+  gap: 8px;
+  font-weight: 500;
+  line-height: 125%;
+  align-items: center;
+}
+
+.condSpecAccesItem:not(:last-child),
+.condSpecAccesText:not(:last-child) {
+  margin-bottom: 16px;
+}
