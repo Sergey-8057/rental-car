@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Toaster } from 'react-hot-toast';
 import { Manrope, Inter } from 'next/font/google';
 
 import TanStackProvider from '@/components/TanStackProvider/TanStackProvider';
@@ -35,7 +36,10 @@ export default function RootLayout({
       <body className={`${manrope.variable} ${inter.variable}`}>
         <TanStackProvider>
           <Header />
-          <main>{children}</main>
+          <main>
+            <Toaster />
+            {children}
+          </main>
         </TanStackProvider>
       </body>
     </html>

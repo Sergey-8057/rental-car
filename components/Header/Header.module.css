@@ -1,4 +1,8 @@
 .header {
+  background-color: var(--badges);
+}
+
+.container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -7,7 +11,6 @@
   width: 100%;
   padding: 24px 120px;
   margin: 0 auto;
-  background-color: var(--badges);
 }
 
 .navigation {

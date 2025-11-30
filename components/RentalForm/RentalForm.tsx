@@ -1,25 +1,59 @@
 'use client';
 
+import { FormEvent, useState } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 import css from './RentalForm.module.css';
 
 export default function RentalForm() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    date: '',
+    content: '',
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    toast.success('Your request has been sent!', {
+      duration: 5000,
+    });
+    setFormData({
+      name: '',
+      email: '',
+      date: '',
+      content: '',
+    });
+  };
+
   return (
     <div className={css.containerForm}>
+      <Toaster position="top-right" reverseOrder={false} />
+
       <h3 className={css.formTitle}>Book your car now</h3>
       <p className={css.formText}>Stay connected! We are always ready to help you.</p>
-      <form className={css.form}>
+
+      <form className={css.form} onSubmit={handleSubmit}>
         <div className={css.formGroup}>
           <input
             id="name"
-            type="name"
+            type="text"
             name="name"
             className={css.input}
             required
+            minLength={3}
+            maxLength={50}
             placeholder="Name*"
+            value={formData.name}
+            onChange={handleChange}
           />
-        </div>
 
-        <div className={css.formGroup}>
           <input
             id="email"
             type="email"
@@ -27,27 +61,34 @@ export default function RentalForm() {
             className={css.input}
             required
             placeholder="Email*"
+            value={formData.email}
+            onChange={handleChange}
           />
-        </div>
 
-        <div className={css.formGroup}>
           <input
             id="date"
             type="text"
             name="date"
             className={css.input}
-            required
             placeholder="Booking date"
+            value={formData.date}
+            onChange={handleChange}
           />
-        </div>
 
-        <div className={css.formGroup}>
-          <textarea id="comment" name="content" rows={8} className={css.textarea} maxLength={500} />
+          <textarea
+            id="content"
+            name="content"
+            className={css.textarea}
+            maxLength={500}
+            placeholder="Comment"
+            value={formData.content}
+            onChange={handleChange}
+          />
         </div>
 
         <div className={css.actions}>
           <button type="submit" className={css.submitButton}>
-            Зареєструватись
+            Send
           </button>
         </div>
       </form>
