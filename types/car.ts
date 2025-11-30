@@ -32,3 +32,13 @@ export type CarFilterParams = {
   limit?: number;
   page?: number;
 };
+
+export interface RentalFormData {
+  name: string;
+  email: string;
+  phone: string;
+  address: string;
+  rentalDate: string;
+  returnDate: string;
+  comments?: string;
+}

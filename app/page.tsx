@@ -1,6 +1,12 @@
 import Link from 'next/link';
 import css from './page.module.css';
 
+export const metadata = {
+  title: 'RentalCar - Home',
+  description: 'Find your perfect rental car. Reliable and budget-friendly rentals.',
+};
+
+
 export default function Home() {
   return (
     <section className={css.container}>

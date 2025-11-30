@@ -9,6 +9,15 @@ interface PageProps {
   params: Promise<{ id: string }>;
 }
 
+export async function generateMetadata({ params }: PageProps) {
+  const { id } = await params;
+  const car = await fetchCarByIdServer(id);
+  return {
+    title: `RentalCar - ${car.brand} ${car.model}`,
+    description: car.description,
+  };
+}
+
 export default async function CarPage({ params }: PageProps) {
   const { id } = await params;
 

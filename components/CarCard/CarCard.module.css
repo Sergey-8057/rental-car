@@ -1,5 +1,7 @@
+/* components/CarCard/CarCard.module.css */
 .listItem {
   flex-basis: calc((100% - 32px * 3) / 4);
+  position: relative;
 }
 
 .imgWrapper {
@@ -9,6 +11,7 @@
   height: 268px;
   background: linear-gradient(180deg, rgba(18, 20, 23, 0.5) 0%, rgba(18, 20, 23, 0.5) 100%);
   margin-bottom: 16px;
+  position: relative;
 }
 
 .imgCar {
@@ -16,6 +19,39 @@
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+/* Стили для кнопки избранного */
+.favoriteButton {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.favoriteButton:hover {
+  transform: scale(1.1);
+}
+
+.favoriteButton svg {
+  width: 16px;
+  height: 16px;
+  transition: all 0.3s ease;
+}
+
+/* Если нужно изменить цвет иконки при активном состоянии */
+.favoriteButton.active svg {
+  /* Если иконка isFavorite не имеет своего цвета, можно добавить здесь */
+  /* fill: #3470ff; */
 }
 
 .imgTitle {
@@ -51,13 +87,13 @@
 }
 
 .vertLine::after {
-    content: '';
-    position: absolute;
-    height: 16px;
-    width: 1px;
-    background-color: var(--gray-light);
-    right: -6.5px;
-  }
+  content: '';
+  position: absolute;
+  height: 16px;
+  width: 1px;
+  background-color: var(--gray-light);
+  right: -6.5px;
+}
 
 .btnLink {
   display: flex;

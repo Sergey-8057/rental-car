@@ -2,7 +2,9 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import type { Car } from '../../types/car';
+import { useCarStore } from '@/store/carStore';
+import type { Car } from '@/types/car';
+import { useLayoutEffect, useState } from 'react';
 import css from './CarCard.module.css';
 
 interface CarCardProps {
@@ -10,13 +12,29 @@ interface CarCardProps {
 }
 
 export default function CarCard({ car }: CarCardProps) {
-  const address = car.address.split(', ')
-  const formatCarType = car.type.charAt(0).toUpperCase() + car.type.slice(1).toLowerCase();
-  const formatMileage = car.mileage.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  const { addToFavorites, removeFromFavorites, isFavorite } = useCarStore();
+  const [mounted, setMounted] = useState(false);
 
+  useLayoutEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const isCarFavorite = mounted ? isFavorite(car.id) : false;
+
+  const address = car.address.split(', ');
+  const formatCarType = car.type.charAt(0).toUpperCase() + car.type.slice(1).toLowerCase();
+  const formatMileage = car.mileage.toLocaleString();
+
+  const handleToggleFavorite = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!mounted) return;
+    if (isCarFavorite) removeFromFavorites(car.id);
+    else addToFavorites(car);
+  };
 
   return (
-    <li className={css.listItem} key={car.id}>
+    <li className={css.listItem}>
       <div className={css.imgWrapper}>
         <Image
           src={car.img}
@@ -24,8 +42,25 @@ export default function CarCard({ car }: CarCardProps) {
           width={276}
           height={268}
           className={css.imgCar}
-          priority={true}
+          priority
         />
+        {mounted && (
+          <button
+            className={`${css.favoriteButton} ${isCarFavorite ? css.active : ''}`}
+            onClick={handleToggleFavorite}
+            aria-label={isCarFavorite ? 'Remove from favorites' : 'Add to favorites'}
+          >
+            <svg width="16" height="16" aria-hidden="true">
+              <use
+                href={
+                  isCarFavorite
+                    ? '/symbol-defs.svg#icon-isFavorite'
+                    : '/symbol-defs.svg#icon-notFavorite'
+                }
+              />
+            </svg>
+          </button>
+        )}
       </div>
       <div className={css.imgTitle}>
         <p>

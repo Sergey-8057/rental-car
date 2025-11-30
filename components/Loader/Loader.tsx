@@ -1,10 +1,11 @@
-// import { DotLoader } from 'react-spinners';
-// import css from '../Loader/Loader.module.css';
+'use client';
+import { DotLoader } from 'react-spinners';
+import css from './Loader.module.css';
 
-// export default function Loader() {
-//   return (
-//     <div className={css.loader}>
-//       <DotLoader color="#0d6efd" size={60} loading={true} />
-//     </div>
-//   );
-// }
+export default function Loader() {
+  return (
+    <div className={css.loader}>
+      <DotLoader color="#0d6efd" size={60} loading={true} />
+    </div>
+  );
+}
