@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useCarStore } from '@/store/carStore';
 import type { Car } from '@/types/car';
-import { useLayoutEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import css from './CarCard.module.css';
 
 interface CarCardProps {
@@ -13,12 +13,14 @@ interface CarCardProps {
 
 export default function CarCard({ car }: CarCardProps) {
   const { addToFavorites, removeFromFavorites, isFavorite } = useCarStore();
+
   const [mounted, setMounted] = useState(false);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setMounted(true);
   }, []);
 
+  // Проверяем избранное только после монтирования
   const isCarFavorite = mounted ? isFavorite(car.id) : false;
 
   const address = car.address.split(', ');
@@ -28,10 +30,25 @@ export default function CarCard({ car }: CarCardProps) {
   const handleToggleFavorite = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    if (!mounted) return;
+    if (!mounted) return; // защита на случай SSR
     if (isCarFavorite) removeFromFavorites(car.id);
     else addToFavorites(car);
   };
+
+  if (!mounted) {
+    return (
+      <li className={css.listItem}>
+        <div className={css.imgWrapper} />
+        <div className={css.imgTitle} />
+        <div className={css.imgText} />
+        <div className={css.btnLink}>
+          <Link href={`/cars/${car.id}`} className={css.link}>
+            Read more
+          </Link>
+        </div>
+      </li>
+    );
+  }
 
   return (
     <li className={css.listItem}>
@@ -44,23 +61,21 @@ export default function CarCard({ car }: CarCardProps) {
           className={css.imgCar}
           priority
         />
-        {mounted && (
-          <button
-            className={`${css.favoriteButton} ${isCarFavorite ? css.active : ''}`}
-            onClick={handleToggleFavorite}
-            aria-label={isCarFavorite ? 'Remove from favorites' : 'Add to favorites'}
-          >
-            <svg width="16" height="16" aria-hidden="true">
-              <use
-                href={
-                  isCarFavorite
-                    ? '/symbol-defs.svg#icon-isFavorite'
-                    : '/symbol-defs.svg#icon-notFavorite'
-                }
-              />
-            </svg>
-          </button>
-        )}
+        <button
+          className={`${css.favoriteButton} ${isCarFavorite ? css.active : ''}`}
+          onClick={handleToggleFavorite}
+          aria-label={isCarFavorite ? 'Remove from favorites' : 'Add to favorites'}
+        >
+          <svg width="16" height="16" aria-hidden="true">
+            <use
+              href={
+                isCarFavorite
+                  ? '/symbol-defs.svg#icon-isFavorite'
+                  : '/symbol-defs.svg#icon-notFavorite'
+              }
+            />
+          </svg>
+        </button>
       </div>
       <div className={css.imgTitle}>
         <p>
