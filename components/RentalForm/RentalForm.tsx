@@ -34,8 +34,6 @@ export default function RentalForm() {
 
   return (
     <div className={css.containerForm}>
-      <Toaster position="top-right" reverseOrder={false} />
-
       <h3 className={css.formTitle}>Book your car now</h3>
       <p className={css.formText}>Stay connected! We are always ready to help you.</p>
 

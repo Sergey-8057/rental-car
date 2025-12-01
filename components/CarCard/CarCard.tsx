@@ -20,7 +20,6 @@ export default function CarCard({ car }: CarCardProps) {
     setMounted(true);
   }, []);
 
-  // Проверяем избранное только после монтирования
   const isCarFavorite = mounted ? isFavorite(car.id) : false;
 
   const address = car.address.split(', ');
